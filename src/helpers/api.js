@@ -15,7 +15,7 @@ const options = {
 };
 
 const fetchTrendMovies = async currentPage => {
-  const endpoint = '/trending/all/day';
+  const endpoint = '/trending/movie/day';
 
   const params = new URLSearchParams({
     api_key: API_KEY, //!
@@ -25,7 +25,7 @@ const fetchTrendMovies = async currentPage => {
 
   // page: currentPage,
   //     query: '',
-  //     include_adult: 'false',
+  //     include_adult: 'false', //?
 
   const response = await axios.request(
     `${BASE_URL}${endpoint}?${params}`,

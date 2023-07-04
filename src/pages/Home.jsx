@@ -22,21 +22,18 @@ const Home = () => {
     //   }
 
     const fetchTrendMoviesData = async () => {
-      setIsLoading(true); //?
+      setIsLoading(true);
 
       try {
         const {
-          data: { results },
-          data: { total_pages },
+          data: { results, total_pages },
         } = await fetchTrendMovies(currentPage);
-        console.log(' total_pages', total_pages);
-
         takeTrendMovies(results, total_pages);
       } catch (error) {
         console.log('ERROR', error); //???
         Report.failure('ERROR', `${error.message}`, 'Close');
       } finally {
-        setIsLoading(false); //?
+        setIsLoading(false);
       }
     };
 
@@ -44,7 +41,6 @@ const Home = () => {
       if (results.length !== 0) {
         setMovies(prevState => [...prevState, ...results]);
         setTotalPages(total_pages); //?
-        console.log(' total_pages2', total_pages);
       } else {
         Notify.failure(
           'Sorry, there are no images matching your search query. Please try again.'
@@ -55,13 +51,17 @@ const Home = () => {
     fetchTrendMoviesData();
   }, [currentPage]);
 
+  const onLoadMore = () => {
+    setCurrentPage(prevState => prevState + 1);
+  };
+
   return (
     <>
       {movies.length > 0 && (
         <Section title="Trending today">
           <MoviesGallery data={movies} />
           {currentPage < totalPages && !isLoading && (
-            <Button text="Load more" />
+            <Button text="Load more" onClickBtn={onLoadMore} />
           )}
         </Section>
       )}
@@ -70,7 +70,5 @@ const Home = () => {
     </>
   );
 };
-
-/* <Button text="Load more" onClickBtn={onLoadMore} /> */
 
 export default Home;
