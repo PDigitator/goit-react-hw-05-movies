@@ -1,8 +1,8 @@
-import { useParams, useLocation } from 'react-router-dom';
-import { BackLink } from 'components/BackLink';
-import { getMovieById } from '../fakeAPI';
+import { useLocation } from 'react-router-dom';
+import BackLink from 'components/BackLink';
+// import { getMovieById } from '../fakeAPI';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   //   const { id } = useParams(); //!
   //   const movie = getMovieById(id); //!
   const location = useLocation();
@@ -22,3 +22,5 @@ export const MovieDetails = () => {
     </main>
   );
 };
+
+export default MovieDetails;
