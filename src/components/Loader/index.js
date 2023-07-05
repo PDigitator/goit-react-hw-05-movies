@@ -1,1 +1,1 @@
-export { default } from 'components/Loader';
+export { default } from './Loader';

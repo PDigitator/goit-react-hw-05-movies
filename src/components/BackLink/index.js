@@ -1,1 +1,1 @@
-export { default } from 'components/BackLink';
+export { default } from './BackLink';

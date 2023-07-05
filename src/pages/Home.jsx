@@ -39,7 +39,7 @@ const Home = () => {
 
     const takeTrendMovies = (results, total_pages) => {
       if (results.length !== 0) {
-        setMovies(prevState => [...prevState, ...results]);
+        setMovies(prevState => [...prevState, ...results]); //?
         setTotalPages(total_pages); //?
       } else {
         Notify.failure(
@@ -61,7 +61,7 @@ const Home = () => {
         <Section title="Trending today">
           <MoviesGallery data={movies} />
           {currentPage < totalPages && !isLoading && (
-            <Button text="Load more" onClickBtn={onLoadMore} />
+            <Button text="Load more" onClickBtn={onLoadMore} /> //?
           )}
         </Section>
       )}

@@ -1,1 +1,1 @@
-export { default } from 'components/MoviesGalleryItem';
+export { default } from './MoviesGalleryItem';

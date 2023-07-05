@@ -9,7 +9,6 @@ const MoviesGalleryItem = ({
   element: { poster_path, largeImageURL, title },
   onClickImage,
 }) => {
-  console.log('title', title);
   return (
     <>
       <Thumb>
