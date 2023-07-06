@@ -28,6 +28,8 @@ const fetchTrendMovies = async currentPage => {
 };
 
 const fetchMovies = async (query, currentPage) => {
+  console.log('worked fetchMovies'); //!
+
   const endpoint = '/search/movie';
 
   const params = new URLSearchParams({
@@ -44,4 +46,47 @@ const fetchMovies = async (query, currentPage) => {
   return response;
 };
 
-export default (fetchTrendMovies, fetchMovies);
+const fetchMovieDetails = async movieId => {
+  console.log('worked fetchMovieDetails'); //!
+
+  const endpoint = `/movie/${movieId}`;
+
+  const response = await axios.request(`${BASE_URL}${endpoint}`, options);
+
+  return response;
+};
+
+const fetchMovieCasts = async movieId => {
+  console.log('worked fetchMovieCasts'); //!
+
+  const endpoint = `/movie/${movieId}/credits`;
+
+  const response = await axios.request(`${BASE_URL}${endpoint}`, options);
+
+  return response;
+};
+
+const fetchMovieReviews = async movieId => {
+  console.log('worked fetchMovieReviews'); //!
+
+  const endpoint = `/movie/${movieId}/reviews`;
+
+  const params = new URLSearchParams({
+    page: 1,
+  });
+
+  const response = await axios.request(
+    `${BASE_URL}${endpoint}?${params}`,
+    options
+  );
+
+  return response;
+};
+
+export {
+  fetchTrendMovies,
+  fetchMovies,
+  fetchMovieDetails,
+  fetchMovieCasts,
+  fetchMovieReviews,
+};

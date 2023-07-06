@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 
-import fetchTrendMovies from 'helpers/api';
+import { fetchTrendMovies } from 'helpers/api';
 
 import MoviesGallery from 'components/MoviesGallery/MoviesGallery';
 import Section from 'components/Section/Section';
@@ -17,10 +17,6 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    //   if (!searchQuery) {
-    //     return;
-    //   }
-
     const fetchTrendMoviesData = async () => {
       setIsLoading(true);
 
@@ -28,7 +24,7 @@ const Home = () => {
         const {
           data: { results, total_pages },
         } = await fetchTrendMovies(currentPage);
-        takeTrendMovies(results, total_pages);
+        getTrendMovies(results, total_pages);
       } catch (error) {
         console.log('ERROR', error); //???
         Report.failure('ERROR', `${error.message}`, 'Close');
@@ -37,13 +33,13 @@ const Home = () => {
       }
     };
 
-    const takeTrendMovies = (results, total_pages) => {
+    const getTrendMovies = (results, total_pages) => {
       if (results.length !== 0) {
         setMovies(prevState => [...prevState, ...results]); //?
         setTotalPages(total_pages); //?
       } else {
         Notify.failure(
-          'Sorry, there are no images matching your search query. Please try again.'
+          'Sorry, there are no movies in trend. Please try later.'
         );
       }
     };
@@ -57,14 +53,16 @@ const Home = () => {
 
   return (
     <>
-      {movies.length > 0 && (
-        <Section title="Trending today">
-          <MoviesGallery data={movies} />
-          {currentPage < totalPages && !isLoading && (
-            <Button text="Load more" onClickBtn={onLoadMore} /> //?
-          )}
-        </Section>
-      )}
+      <Section title="Trending today">
+        {movies.length > 0 && (
+          <>
+            <MoviesGallery data={movies} />
+            {currentPage < totalPages && !isLoading && (
+              <Button text="Load more" onClickBtn={onLoadMore} /> //?
+            )}
+          </>
+        )}
+      </Section>
 
       {isLoading && <Loader />}
     </>

@@ -1,10 +1,10 @@
 import { useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import BackLink from 'components/BackLink';
 // import { getMovieById } from '../fakeAPI';
 
 const MovieDetails = () => {
-  //   const { id } = useParams(); //!
+  const { movieId } = useParams(); //!
   //   const movie = getMovieById(id); //!
   const location = useLocation();
 
@@ -18,8 +18,7 @@ const MovieDetails = () => {
       <img src="https://via.placeholder.com/960x240" alt="" />
       <div>
         <h2>
-          {/* Product - {movie.name} - {id} */}
-          Product -
+          Product - {'movie.name'} - {movieId}
         </h2>
         <p>Lorem ipsum</p>
       </div>

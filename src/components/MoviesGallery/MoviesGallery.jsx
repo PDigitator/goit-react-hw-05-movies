@@ -4,12 +4,12 @@ import MovieGalleryItem from 'components/MoviesGalleryItem/MoviesGalleryItem';
 
 import { List } from 'components/MoviesGallery/MoviesGallery.styled';
 
-const MoviesGallery = ({ data, onClickMovie }) => {
+const MoviesGallery = ({ data }) => {
   return (
     <List>
       {data.map(element => (
         <li key={element.id}>
-          <MovieGalleryItem element={element} onClickMovie={onClickMovie} />
+          <MovieGalleryItem element={element} />
         </li>
       ))}
     </List>

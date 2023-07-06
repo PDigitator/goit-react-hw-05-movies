@@ -5,8 +5,14 @@ import { ReactComponent as SearchIcon } from '../icons/search-icon.svg';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 
-import fetchMovies from 'helpers/api';
+import { fetchMovies } from 'helpers/api';
 import { Form, SearchBtn, SearchIconWrap, Input } from 'pages/Movies.styled';
+
+import Searchbar from 'components/Searchbar/Searchbar';
+import MoviesGallery from 'components/MoviesGallery/MoviesGallery';
+import Section from 'components/Section/Section';
+import Loader from 'components/Loader/Loader';
+import Button from 'components/Button/Button';
 
 const Movies = () => {
   // const location = useLocation();
@@ -25,15 +31,16 @@ const Movies = () => {
     if (!query) {
       return;
     }
-
+    console.log('worked USEEFFECT Movies'); //!
     const fetchMoviesData = async () => {
       setIsLoading(true);
+      console.log('worked fetchMoviesData'); //!
 
       try {
         const {
           data: { results, total_pages },
         } = await fetchMovies(query, currentPage);
-        takeMovies(results, total_pages);
+        getMovies(results, total_pages);
       } catch (error) {
         console.log('ERROR', error); //???
         Report.failure('ERROR', `${error.message}`, 'Close');
@@ -42,7 +49,7 @@ const Movies = () => {
       }
     };
 
-    const takeMovies = (results, total_pages) => {
+    const getMovies = (results, total_pages) => {
       if (results.length !== 0) {
         setMovies(prevState => [...prevState, ...results]); //?
 
@@ -55,9 +62,9 @@ const Movies = () => {
     };
 
     fetchMoviesData();
-  }, [searchParams, currentPage, query]);
+  }, [currentPage, query]);
+  console.log('movies', movies); //!
 
-  // useEffect(() => {
   //   const getQuery = searchQuery => {
   //     if (query === searchQuery && query !== '') return;
 
@@ -71,17 +78,13 @@ const Movies = () => {
   //       );
   //     }
   //   };
-  // }, [searchQuery]);
 
-  const handleChange = ({ target: { value } }) => {
-    setSearchQuery(value); //!!!!
-    // console.log('here', searchQuery); //!
-  };
+  // const handleChange = ({ target: { value } }) => {
+  //   setSearchQuery(value); //!!!!
+  //   // console.log('here', searchQuery); //!
+  // };
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const queryValue = form.elements.query.value.toLowerCase().trim();
+  const getQuery = queryValue => {
     if (!queryValue) {
       Notify.info(
         'Sorry, you need to fill in the search field to search for movies.'
@@ -91,11 +94,30 @@ const Movies = () => {
     }
 
     setSearchParams({ query: queryValue });
-    console.log('123', query); //!
-    // form.reset(); //!
-    setSearchQuery(''); //?
-    // console.log('here2', searchQuery); //!
+    setMovies([]);
+    setCurrentPage(1);
   };
+
+  // const handleSubmit = event => {
+  //   event.preventDefault();
+  //   const form = event.currentTarget;
+  //   const queryValue = form.elements.query.value.toLowerCase().trim();
+  //   if (!queryValue) {
+  //     Notify.info(
+  //       'Sorry, you need to fill in the search field to search for movies.'
+  //     );
+
+  //     return;
+  //   }
+
+  //   setSearchParams({ query: queryValue });
+  //   setMovies([]);
+  //   setCurrentPage(1);
+  //   console.log('123', query); //!
+  //   // form.reset(); //!
+  //   setSearchQuery(''); //?
+  //   // console.log('here2', searchQuery); //!
+  // };
 
   // const handleSubmit = event => {
   //   event.preventDefault();
@@ -105,27 +127,43 @@ const Movies = () => {
   //   reset(); //????
   // };
 
+  const onLoadMore = () => {
+    setCurrentPage(prevState => prevState + 1);
+  };
+
   return (
-    // <Link to state={{ from: location }}>
+    // <Link to state={{ from: location }}> //!
     <>
-      <h1>Movies</h1>
-      <Form onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          name="query"
-          value={searchQuery}
-          autoComplete="off"
-          autoFocus
-          placeholder="Movie name"
-          onChange={handleChange}
-        />
-        <SearchBtn type="submit" aria-label="Search">
-          <SearchIconWrap>
-            <SearchIcon width="24" height="24" fill="currentColor" />
-          </SearchIconWrap>
-          Search movie
-        </SearchBtn>
-      </Form>
+      <Section>
+        <Searchbar getQuery={getQuery} />
+
+        {/* <Form onSubmit={handleSubmit}>
+          <Input
+            type="text"
+            name="query"
+            value={searchQuery}
+            autoComplete="off"
+            autoFocus
+            placeholder="Movie name"
+            onChange={handleChange}
+          />
+          <SearchBtn type="submit" aria-label="Search">
+            <SearchIconWrap>
+              <SearchIcon width="24" height="24" fill="currentColor" />
+            </SearchIconWrap>
+          </SearchBtn>
+        </Form> */}
+
+        {movies.length > 0 && (
+          <>
+            <MoviesGallery data={movies} />
+            {currentPage < totalPages && !isLoading && (
+              <Button text="Load more" onClickBtn={onLoadMore} /> //?
+            )}
+          </>
+        )}
+      </Section>
+      {isLoading && <Loader />}
     </>
     // </Link>
   );
