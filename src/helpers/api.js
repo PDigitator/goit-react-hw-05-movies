@@ -4,8 +4,6 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 // const API_KEY = '96335405b345233f2a3dbecabd0603e6'; //!
 const options = {
   method: 'GET',
-  // api_key: API_KEY, //!
-  // page: currentPage, //!
   params: { language: 'en-US' },
   headers: {
     accept: 'application/json',
@@ -18,14 +16,8 @@ const fetchTrendMovies = async currentPage => {
   const endpoint = '/trending/movie/day';
 
   const params = new URLSearchParams({
-    // api_key: API_KEY, //!
-
     page: currentPage,
   });
-
-  // page: currentPage,
-  //     query: '',
-  //     include_adult: 'false', //?
 
   const response = await axios.request(
     `${BASE_URL}${endpoint}?${params}`,
@@ -35,4 +27,21 @@ const fetchTrendMovies = async currentPage => {
   return response;
 };
 
-export default fetchTrendMovies;
+const fetchMovies = async (query, currentPage) => {
+  const endpoint = '/search/movie';
+
+  const params = new URLSearchParams({
+    query: query,
+    include_adult: 'false',
+    page: currentPage,
+  });
+
+  const response = await axios.request(
+    `${BASE_URL}${endpoint}?${params}`,
+    options
+  );
+
+  return response;
+};
+
+export default (fetchTrendMovies, fetchMovies);
