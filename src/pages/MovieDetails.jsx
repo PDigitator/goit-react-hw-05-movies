@@ -1,28 +1,77 @@
-import { useRef } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useState, useRef, useEffect, Suspense } from 'react';
+import { useLocation, useParams, Outlet } from 'react-router-dom';
+
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { Report } from 'notiflix/build/notiflix-report-aio';
+
+import { fetchMovieDetails } from 'helpers/api';
+
+import Section from 'components/Section/Section';
+import Loader from 'components/Loader/Loader';
 import BackLink from 'components/BackLink';
+import MovieInfo from 'components/MovieInfo';
 // import { getMovieById } from '../fakeAPI';
 
 const MovieDetails = () => {
-  const { movieId } = useParams(); //!
-  //   const movie = getMovieById(id); //!
+  const [details, setDetails] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { movieId } = useParams(); //???
+
   const location = useLocation();
 
-  const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
-  console.log('location.state.from', location); //!
-  console.log('backLinkLocationRef', backLinkLocationRef); //!
+  const backLinkLocation = useRef(location.state?.from ?? '/movies');
 
+  useEffect(() => {
+    if (!movieId) {
+      return;
+    }
+
+    const fetchMovieDetailsData = async () => {
+      setIsLoading(true);
+
+      try {
+        const { data } = await fetchMovieDetails(movieId);
+        console.log('first data from fetch', data);
+        getDetails(data);
+      } catch (error) {
+        console.log('ERROR', error); //???
+        Report.failure('ERROR', `${error.message}`, 'Close');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    const getDetails = data => {
+      if (data.length !== 0) {
+        setDetails(data); //?
+      } else {
+        Notify.failure('Sorry, there are no movies details.');
+      }
+    };
+
+    fetchMovieDetailsData();
+  }, [movieId]);
+
+  // if (details.length === 0) {
+  //   console.log('KINA NE BUDE');
+  //   return;
+  // } //!
+
+  console.log('HAVE details', details); //!!!!!!!!!!!!!!!!!!
   return (
-    <main>
-      <BackLink to={backLinkLocationRef}>Go back</BackLink>
-      <img src="https://via.placeholder.com/960x240" alt="" />
-      <div>
-        <h2>
-          Product - {'movie.name'} - {movieId}
-        </h2>
-        <p>Lorem ipsum</p>
-      </div>
-    </main>
+    <>
+      <Section>
+        <BackLink to={backLinkLocation.current}>Go back</BackLink>
+
+        {details.length !== 0 && <MovieInfo details={details} />}
+
+        {/* <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense> */}
+      </Section>
+      {isLoading && <Loader />}
+    </>
   );
 };
 

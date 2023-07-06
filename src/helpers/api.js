@@ -28,8 +28,6 @@ const fetchTrendMovies = async currentPage => {
 };
 
 const fetchMovies = async (query, currentPage) => {
-  console.log('worked fetchMovies'); //!
-
   const endpoint = '/search/movie';
 
   const params = new URLSearchParams({
@@ -47,7 +45,7 @@ const fetchMovies = async (query, currentPage) => {
 };
 
 const fetchMovieDetails = async movieId => {
-  console.log('worked fetchMovieDetails'); //!
+  // console.log('worked fetchMovieDetails'); //!
 
   const endpoint = `/movie/${movieId}`;
 
@@ -62,7 +60,7 @@ const fetchMovieCasts = async movieId => {
   const endpoint = `/movie/${movieId}/credits`;
 
   const response = await axios.request(`${BASE_URL}${endpoint}`, options);
-
+  // console.log('response', response); //!!!!!!!!!!!!!!!!!!
   return response;
 };
 

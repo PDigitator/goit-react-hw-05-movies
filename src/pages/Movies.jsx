@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
-import { ReactComponent as SearchIcon } from '../icons/search-icon.svg';
+// import { ReactComponent as SearchIcon } from '../icons/search-icon.svg';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 
 import { fetchMovies } from 'helpers/api';
-import { Form, SearchBtn, SearchIconWrap, Input } from 'pages/Movies.styled';
+// import { Form, SearchBtn, SearchIconWrap, Input } from 'pages/Movies.styled';
 
 import Searchbar from 'components/Searchbar/Searchbar';
 import MoviesGallery from 'components/MoviesGallery/MoviesGallery';
@@ -15,12 +15,10 @@ import Loader from 'components/Loader/Loader';
 import Button from 'components/Button/Button';
 
 const Movies = () => {
-  // const location = useLocation();
-  // console.log(location); //!
+  // const location = useLocation(); //!
 
   const [searchParams, setSearchParams] = useSearchParams();
-  // const [query, setQuery] = useState(''); //!
-  const [searchQuery, setSearchQuery] = useState('');
+
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [movies, setMovies] = useState([]);
@@ -31,10 +29,9 @@ const Movies = () => {
     if (!query) {
       return;
     }
-    console.log('worked USEEFFECT Movies'); //!
+
     const fetchMoviesData = async () => {
       setIsLoading(true);
-      console.log('worked fetchMoviesData'); //!
 
       try {
         const {
@@ -63,7 +60,6 @@ const Movies = () => {
 
     fetchMoviesData();
   }, [currentPage, query]);
-  console.log('movies', movies); //!
 
   //   const getQuery = searchQuery => {
   //     if (query === searchQuery && query !== '') return;
@@ -81,7 +77,7 @@ const Movies = () => {
 
   // const handleChange = ({ target: { value } }) => {
   //   setSearchQuery(value); //!!!!
-  //   // console.log('here', searchQuery); //!
+
   // };
 
   const getQuery = queryValue => {
@@ -113,10 +109,10 @@ const Movies = () => {
   //   setSearchParams({ query: queryValue });
   //   setMovies([]);
   //   setCurrentPage(1);
-  //   console.log('123', query); //!
+
   //   // form.reset(); //!
   //   setSearchQuery(''); //?
-  //   // console.log('here2', searchQuery); //!
+
   // };
 
   // const handleSubmit = event => {
@@ -164,6 +160,8 @@ const Movies = () => {
         )}
       </Section>
       {isLoading && <Loader />}
+
+      {/* <Outlet /> //??? */}
     </>
     // </Link>
   );
