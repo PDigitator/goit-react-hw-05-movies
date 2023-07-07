@@ -25,8 +25,7 @@ const MoviesGalleryItem = ({ element: { id, poster_path, title } }) => {
             <Image src={noImageIcon} alt={title} />
           )}
         </Thumb>
-      </Link>
-      <Link to={`/movies/${id}`} state={{ from: location }}>
+
         <p>{title}</p>
       </Link>
     </>
