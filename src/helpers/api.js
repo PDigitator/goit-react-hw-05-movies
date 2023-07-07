@@ -54,7 +54,7 @@ const fetchMovieDetails = async movieId => {
   return response;
 };
 
-const fetchMovieCasts = async movieId => {
+const fetchMovieCast = async movieId => {
   console.log('worked fetchMovieCasts'); //!
 
   const endpoint = `/movie/${movieId}/credits`;
@@ -85,6 +85,6 @@ export {
   fetchTrendMovies,
   fetchMovies,
   fetchMovieDetails,
-  fetchMovieCasts,
+  fetchMovieCast,
   fetchMovieReviews,
 };

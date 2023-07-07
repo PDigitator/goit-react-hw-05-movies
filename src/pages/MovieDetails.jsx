@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, Suspense } from 'react';
-import { useLocation, useParams, Outlet } from 'react-router-dom';
+import { useLocation, useParams, Outlet, NavLink } from 'react-router-dom';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Report } from 'notiflix/build/notiflix-report-aio';
@@ -32,7 +32,7 @@ const MovieDetails = () => {
 
       try {
         const { data } = await fetchMovieDetails(movieId);
-        console.log('first data from fetch', data);
+
         getDetails(data);
       } catch (error) {
         console.log('ERROR', error); //???
@@ -46,19 +46,13 @@ const MovieDetails = () => {
       if (data.length !== 0) {
         setDetails(data); //?
       } else {
-        Notify.failure('Sorry, there are no movies details.');
+        Notify.failure('Sorry, there are no movie details.');
       }
     };
 
     fetchMovieDetailsData();
   }, [movieId]);
 
-  // if (details.length === 0) {
-  //   console.log('KINA NE BUDE');
-  //   return;
-  // } //!
-
-  console.log('HAVE details', details); //!!!!!!!!!!!!!!!!!!
   return (
     <>
       <Section>
@@ -66,9 +60,22 @@ const MovieDetails = () => {
 
         {details.length !== 0 && <MovieInfo details={details} />}
 
-        {/* <Suspense fallback={<div>Loading...</div>}>
+        <div>
+          <h4>Additional information</h4>
+          <ul>
+            <li>
+              <NavLink to="cast">Cast</NavLink>
+            </li>
+            <li>
+              <NavLink to="reviews">Reviews</NavLink>
+            </li>
+          </ul>
+        </div>
+      </Section>
+      <Section>
+        <Suspense fallback={<div>Loading...</div>}>
           <Outlet />
-        </Suspense> */}
+        </Suspense>
       </Section>
       {isLoading && <Loader />}
     </>

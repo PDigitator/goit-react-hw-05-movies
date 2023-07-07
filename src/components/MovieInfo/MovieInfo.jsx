@@ -34,13 +34,13 @@ const MovieInfo = ({
         )}
       </div>
 
-      <h2>
+      <h3>
         {title} ({date})
-      </h2>
+      </h3>
       <p>User Score: {score}%</p>
-      <h3>Overview</h3>
+      <h4>Overview</h4>
       <p>{overview ? overview : 'No overview'}</p>
-      <h3>Genres</h3>
+      <h4>Genres</h4>
       <p>{genres ? movieGenres : 'No information'}</p>
     </>
   );
