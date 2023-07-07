@@ -10,13 +10,12 @@ import Section from 'components/Section/Section';
 import Loader from 'components/Loader/Loader';
 import BackLink from 'components/BackLink';
 import MovieInfo from 'components/MovieInfo';
-// import { getMovieById } from '../fakeAPI';
 
 const MovieDetails = () => {
   const [details, setDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { movieId } = useParams(); //???
+  const { movieId } = useParams();
 
   const location = useLocation();
 
@@ -44,7 +43,7 @@ const MovieDetails = () => {
 
     const getDetails = data => {
       if (data.length !== 0) {
-        setDetails(data); //?
+        setDetails(data);
       } else {
         Notify.failure('Sorry, there are no movie details.');
       }

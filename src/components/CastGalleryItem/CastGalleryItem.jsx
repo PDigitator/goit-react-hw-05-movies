@@ -1,6 +1,4 @@
-// import { useLocation, Link } from 'react-router-dom'; //!
-
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import noImageIcon from '../../icons/noImageIcon-500x750.png';
 
@@ -10,10 +8,8 @@ import {
 } from 'components/CastGalleryItem/CastGalleryItem.styled';
 
 const CastGalleryItem = ({ element: { profile_path, name, character } }) => {
-  // const location = useLocation(); //!
   return (
     <>
-      {/* <Link to={`/movies/${id}`} state={{ from: location }}> */}
       <Thumb>
         {profile_path ? (
           <Image
@@ -25,23 +21,18 @@ const CastGalleryItem = ({ element: { profile_path, name, character } }) => {
           <Image src={noImageIcon} alt={name} />
         )}
       </Thumb>
-      {/* </Link> */}
-      {/* <Link to={`/movies/${id}`} state={{ from: location }}> */}
       <p>{name}</p>
-      <p>Character: {character}</p>
-
-      {/* </Link> */}
+      {character && <p>Character: {character}</p>}
     </>
   );
 };
 
-// MoviesGalleryItem.propTypes = {
-//   element: PropTypes.shape({
-//     poster_path: PropTypes.string.isRequired,
-//     largeImageURL: PropTypes.string.isRequired,
-//     title: PropTypes.string.isRequired,
-//   }).isRequired,
-//   onClickImage: PropTypes.func.isRequired,
-// };
+CastGalleryItem.propTypes = {
+  element: PropTypes.shape({
+    profile_path: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    character: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default CastGalleryItem;

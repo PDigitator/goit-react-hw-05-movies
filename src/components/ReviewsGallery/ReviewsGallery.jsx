@@ -1,30 +1,29 @@
 import PropTypes from 'prop-types';
 
-import CastGalleryItem from 'components/CastGalleryItem';
+import ReviewsGalleryItem from 'components/ReviewsGalleryItem';
 
 import { List } from 'components/MoviesGallery/MoviesGallery.styled';
 
-const CastGallery = ({ data }) => {
+const ReviewsGallery = ({ data }) => {
   return (
     <List>
       {data.map(element => (
         <li key={element.id}>
-          <CastGalleryItem element={element} />
+          <ReviewsGalleryItem element={element} />
         </li>
       ))}
     </List>
   );
 };
 
-CastGallery.propTypes = {
+ReviewsGallery.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      profile_path: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      character: PropTypes.string.isRequired,
+      author: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
     }).isRequired
   ).isRequired,
 };
 
-export default CastGallery;
+export default ReviewsGallery;

@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect, Suspense } from 'react';
-import { useLocation, useParams, Outlet, NavLink } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Report } from 'notiflix/build/notiflix-report-aio';
@@ -9,18 +9,12 @@ import { fetchMovieCast } from 'helpers/api';
 import Section from 'components/Section/Section';
 import Loader from 'components/Loader/Loader';
 import CastGallery from 'components/CastGallery';
-import MovieInfo from 'components/MovieInfo';
-// import { getMovieById } from '../fakeAPI';
 
 const Cast = () => {
   const [movieCast, setMovieCast] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { movieId } = useParams(); //???
-
-  // const location = useLocation();
-
-  // const backLinkLocation = useRef(location.state?.from ?? '/movies');
+  const { movieId } = useParams();
 
   useEffect(() => {
     if (!movieId) {
@@ -46,7 +40,7 @@ const Cast = () => {
 
     const getMovieCast = cast => {
       if (cast.length !== 0) {
-        setMovieCast(cast); //?
+        setMovieCast(cast);
       } else {
         Notify.failure('Sorry, there are no movie cast.');
       }

@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import MovieGalleryItem from 'components/MoviesGalleryItem/MoviesGalleryItem';
 
@@ -16,16 +16,14 @@ const MoviesGallery = ({ data }) => {
   );
 };
 
-// MoviesGallery.propTypes = {
-//   data: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.number.isRequired,
-//       webformatURL: PropTypes.string.isRequired,
-//       largeImageURL: PropTypes.string.isRequired,
-//       tags: PropTypes.string.isRequired,
-//     }).isRequired
-//   ).isRequired,
-//   onClickImage: PropTypes.func.isRequired,
-// };
+MoviesGallery.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      poster_path: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
+};
 
 export default MoviesGallery;

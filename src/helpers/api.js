@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const BASE_URL = 'https://api.themoviedb.org/3';
-// const API_KEY = '96335405b345233f2a3dbecabd0603e6'; //!
+// const API_KEY = '96335405b345233f2a3dbecabd0603e6'; //?
 const options = {
   method: 'GET',
   params: { language: 'en-US' },
@@ -45,8 +45,6 @@ const fetchMovies = async (query, currentPage) => {
 };
 
 const fetchMovieDetails = async movieId => {
-  // console.log('worked fetchMovieDetails'); //!
-
   const endpoint = `/movie/${movieId}`;
 
   const response = await axios.request(`${BASE_URL}${endpoint}`, options);
@@ -55,18 +53,14 @@ const fetchMovieDetails = async movieId => {
 };
 
 const fetchMovieCast = async movieId => {
-  console.log('worked fetchMovieCasts'); //!
-
   const endpoint = `/movie/${movieId}/credits`;
 
   const response = await axios.request(`${BASE_URL}${endpoint}`, options);
-  // console.log('response', response); //!!!!!!!!!!!!!!!!!!
+
   return response;
 };
 
 const fetchMovieReviews = async movieId => {
-  console.log('worked fetchMovieReviews'); //!
-
   const endpoint = `/movie/${movieId}/reviews`;
 
   const params = new URLSearchParams({

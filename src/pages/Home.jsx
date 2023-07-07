@@ -35,8 +35,8 @@ const Home = () => {
 
     const getTrendMovies = (results, total_pages) => {
       if (results.length !== 0) {
-        setMovies(prevState => [...prevState, ...results]); //?
-        setTotalPages(total_pages); //?
+        setMovies(prevState => [...prevState, ...results]);
+        setTotalPages(total_pages);
       } else {
         Notify.failure(
           'Sorry, there are no movies in trend. Please try later.'
@@ -58,7 +58,7 @@ const Home = () => {
           <>
             <MoviesGallery data={movies} />
             {currentPage < totalPages && !isLoading && (
-              <Button text="Load more" onClickBtn={onLoadMore} /> //?
+              <Button text="Load more" onClickBtn={onLoadMore} />
             )}
           </>
         )}

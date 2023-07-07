@@ -1,6 +1,6 @@
 import { useLocation, Link } from 'react-router-dom';
 
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import noImageIcon from '../../icons/noImageIcon-500x750.png';
 
@@ -33,13 +33,11 @@ const MoviesGalleryItem = ({ element: { id, poster_path, title } }) => {
   );
 };
 
-// MoviesGalleryItem.propTypes = {
-//   element: PropTypes.shape({
-//     poster_path: PropTypes.string.isRequired,
-//     largeImageURL: PropTypes.string.isRequired,
-//     title: PropTypes.string.isRequired,
-//   }).isRequired,
-//   onClickImage: PropTypes.func.isRequired,
-// };
+MoviesGalleryItem.propTypes = {
+  element: PropTypes.shape({
+    poster_path: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default MoviesGalleryItem;
