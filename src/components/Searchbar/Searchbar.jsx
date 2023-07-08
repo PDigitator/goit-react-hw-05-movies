@@ -23,8 +23,8 @@ const Searchbar = ({ getQuery }) => {
     const queryValue = form.elements.query.value.toLowerCase().trim();
 
     getQuery(queryValue);
-
     setQuery('');
+    // form.reset(); //??
   };
 
   return (
