@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import CastGalleryItem from 'components/CastGalleryItem';
 
-import { List } from 'components/MoviesGallery/MoviesGallery.styled';
+import { List } from 'components/CastGallery/CastGallery.styled';
 
 const CastGallery = ({ data }) => {
   return (
