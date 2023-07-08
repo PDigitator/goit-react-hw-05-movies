@@ -6,9 +6,10 @@ import { Report } from 'notiflix/build/notiflix-report-aio';
 
 import { fetchMovieReviews } from 'helpers/api';
 
-import Section from 'components/Section/Section';
 import Loader from 'components/Loader/Loader';
 import ReviewsGallery from 'components/ReviewsGallery';
+
+import { Text } from 'components/MovieInfo/MovieInfo.styled';
 
 const Reviews = () => {
   const [movieReviews, setMovieReviews] = useState([]);
@@ -54,7 +55,9 @@ const Reviews = () => {
       {movieReviews.length !== 0 ? (
         <ReviewsGallery data={movieReviews} />
       ) : (
-        <p>No reviews. But you can keep yours...</p>
+        <Text>
+          We don't have any reviews for this movie. But you can keep yours...
+        </Text>
       )}
 
       {isLoading && <Loader />}

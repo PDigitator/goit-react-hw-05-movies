@@ -2,23 +2,37 @@ import { NavLink } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-const Header = styled.header`
-  position: sticky;
-  top: -1px;
-  z-index: 1100;
+// const Header = styled.header`
+//   position: sticky;
+//   top: -1px;
+//   z-index: 1100;
 
-  padding: 20px 0;
-  background-color: rgb(241 243 244);
-  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
-    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
-`;
+//   padding: 20px 0;
+//   background-color: rgb(241 243 244);
+//   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+//     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+// `;
 
-const Container = styled.div`
-  max-width: 1440px;
-  padding-right: 16px;
-  padding-left: 16px;
-  margin-left: auto;
-  margin-right: auto;
+// const Container = styled.div`
+//   max-width: 1440px;
+//   padding-right: 16px;
+//   padding-left: 16px;
+//   margin-left: auto;
+//   margin-right: auto;
+// `;
+
+const TextTitle = styled.h3`
+  margin-bottom: 20px;
+
+  color: #112236;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: calc(28 / 24);
+  letter-spacing: 0.02em;
+
+  @media screen and (max-width: 382px) {
+    font-size: 4.7vw;
+  }
 `;
 
 const List = styled.ul`
@@ -29,10 +43,11 @@ const List = styled.ul`
 const StyledNavLink = styled(NavLink)`
   display: block;
   width: 35vw;
+
   max-width: 150px;
   padding: 8px 0;
   border: 2px solid #e5eaf1;
-  border-radius: 24px;
+  border-radius: 23px;
 
   background-color: #f3f6f9;
 
@@ -65,4 +80,4 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-export { Header, Container, List, StyledNavLink };
+export { TextTitle, List, StyledNavLink };

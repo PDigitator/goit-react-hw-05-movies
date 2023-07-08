@@ -19,6 +19,7 @@ const Wrapper = styled.div`
     overflow: visible;
   }
 `;
+
 const Thumb = styled.div`
   max-width: 125px;
 `;

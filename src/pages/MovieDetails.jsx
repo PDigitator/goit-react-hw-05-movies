@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, Suspense } from 'react';
-import { useLocation, useParams, Outlet, NavLink } from 'react-router-dom';
+import { useLocation, useParams, Outlet } from 'react-router-dom';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Report } from 'notiflix/build/notiflix-report-aio';
@@ -10,6 +10,9 @@ import Section from 'components/Section/Section';
 import Loader from 'components/Loader/Loader';
 import BackLink from 'components/BackLink';
 import MovieInfo from 'components/MovieInfo';
+import AdditionalInfo from 'components/AdditionalInfo';
+
+import { Text } from 'components/ReviewsGalleryItem/ReviewsGalleryItem.styled';
 
 const MovieDetails = () => {
   const [details, setDetails] = useState([]);
@@ -59,7 +62,8 @@ const MovieDetails = () => {
 
         {details.length !== 0 && <MovieInfo details={details} />}
 
-        <div>
+        <AdditionalInfo />
+        {/* <div>
           <h3>Additional information</h3>
           <ul>
             <li>
@@ -69,10 +73,10 @@ const MovieDetails = () => {
               <NavLink to="reviews">Reviews</NavLink>
             </li>
           </ul>
-        </div>
+        </div> */}
       </Section>
       <Section>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Text>Loading...</Text>}>
           <Outlet />
         </Suspense>
       </Section>

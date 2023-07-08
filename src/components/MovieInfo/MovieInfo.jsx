@@ -2,40 +2,50 @@ import PropTypes from 'prop-types';
 
 import noImageIcon from '../../icons/noImageIcon-500x750.png';
 
-// import {
-//   Thumb,
-//   Image,
-// } from 'components/MoviesGalleryItem/MoviesGalleryItem.styled'; //!!
+import {
+  Wrapper,
+  Thumb,
+  Image,
+  TextWrap,
+  Name,
+  Span,
+  TextTitle,
+  Text,
+} from 'components/MovieInfo/MovieInfo.styled';
 
 const MovieInfo = ({
   details: { title, overview, poster_path, release_date, genres, vote_average },
 }) => {
   const date = new Date(release_date).getFullYear();
   const score = Math.round(vote_average * 10);
-  const movieGenres = genres.map(genre => genre.name).join(' ');
+  const movieGenres = genres.map(genre => genre.name).join(' / ');
 
   return (
     <>
-      <div>
-        {poster_path ? (
-          <img
-            loading="lazy"
-            src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-            alt={title}
-          />
-        ) : (
-          <img src={noImageIcon} alt={title} />
-        )}
-      </div>
-
-      <h3>
-        {title} ({date})
-      </h3>
-      <p>User Score: {score}%</p>
-      <h4>Overview</h4>
-      <p>{overview ? overview : 'No overview'}</p>
-      <h4>Genres</h4>
-      <p>{genres ? movieGenres : 'No information'}</p>
+      <Wrapper>
+        <Thumb>
+          {poster_path ? (
+            <Image
+              loading="lazy"
+              src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+              alt={title}
+            />
+          ) : (
+            <Image src={noImageIcon} alt={title} />
+          )}
+        </Thumb>
+        <TextWrap>
+          <Name>
+            {title}
+            <Span> ({date})</Span>
+          </Name>
+          <Text>User Score: {score}%</Text>
+          <TextTitle>Overview</TextTitle>
+          <Text>{overview ? overview : 'No overview'}</Text>
+          <TextTitle>Genres</TextTitle>
+          <Text>{genres ? movieGenres : 'No information'}</Text>
+        </TextWrap>
+      </Wrapper>
     </>
   );
 };
