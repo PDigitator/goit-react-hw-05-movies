@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import ReviewsGalleryItem from 'components/ReviewsGalleryItem';
 
-import { List } from 'components/MoviesGallery/MoviesGallery.styled';
+import { List } from 'components/ReviewsGallery/ReviewsGallery.styled';
 
 const ReviewsGallery = ({ data }) => {
   return (
@@ -19,7 +19,7 @@ const ReviewsGallery = ({ data }) => {
 ReviewsGallery.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
       author: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
     }).isRequired

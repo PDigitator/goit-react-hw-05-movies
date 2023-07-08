@@ -1,15 +1,28 @@
 import PropTypes from 'prop-types';
 
-// import {
-//   Thumb,
-//   Image,
-// } from 'components/ReviewsGalleryItem/ReviewsGalleryItem.styled'; //!
+import userAvatarIcon from '../../icons/userAvatarIcon-512x512.png';
+
+import {
+  Wrapper,
+  Thumb,
+  Image,
+  TextWrap,
+  Name,
+  Text,
+} from 'components/ReviewsGalleryItem/ReviewsGalleryItem.styled';
 
 const ReviewsGalleryItem = ({ element: { author, content } }) => {
   return (
     <>
-      <p>{author}</p>
-      <p>{content}</p>
+      <Wrapper>
+        <Thumb>
+          <Image src={userAvatarIcon} alt={author} />
+        </Thumb>
+        <TextWrap>
+          <Name>{author}</Name>
+          <Text>{content}</Text>
+        </TextWrap>
+      </Wrapper>
     </>
   );
 };

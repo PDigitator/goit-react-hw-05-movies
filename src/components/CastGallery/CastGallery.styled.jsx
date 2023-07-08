@@ -6,7 +6,6 @@ const List = styled.ul`
   grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
   grid-gap: 17px;
 
-  margin-bottom: 32px;
   padding: 0;
 `;
 

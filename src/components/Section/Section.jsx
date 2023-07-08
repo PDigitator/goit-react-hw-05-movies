@@ -10,7 +10,7 @@ const Section = ({ title, children }) => {
   return (
     <SectionWrapper>
       <Container>
-        <Title>{title}</Title>
+        {title && <Title>{title}</Title>}
         {children}
       </Container>
     </SectionWrapper>
