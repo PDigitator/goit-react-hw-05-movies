@@ -32,7 +32,7 @@ const fetchMovies = async (query, currentPage) => {
 
   const params = new URLSearchParams({
     query: query,
-    include_adult: 'false',
+    include_adult: 'true',
     page: currentPage,
   });
 

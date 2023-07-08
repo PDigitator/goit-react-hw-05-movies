@@ -6,7 +6,6 @@ import { Report } from 'notiflix/build/notiflix-report-aio';
 
 import { fetchMovieCast } from 'helpers/api';
 
-import Section from 'components/Section/Section';
 import Loader from 'components/Loader/Loader';
 import CastGallery from 'components/CastGallery';
 

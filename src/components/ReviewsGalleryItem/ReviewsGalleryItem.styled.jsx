@@ -36,13 +36,7 @@ const Image = styled.img`
   object-fit: cover;
 `;
 
-const TextWrap = styled.div`
-  /* padding-left: 8px;
-
-  @media screen and (max-width: 532px) {
-    padding: 0;
-  } */ //!
-`;
+const TextWrap = styled.div``;
 
 const Name = styled.h2`
   margin-bottom: 8px;
