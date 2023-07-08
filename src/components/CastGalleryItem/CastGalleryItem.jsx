@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import noImageIcon from '../../icons/noImageIcon-500x750.png';
+import noImageIcon from '../../icons/noImageIcon-250x375.png';
 
 import {
   Thumb,
@@ -29,7 +29,7 @@ const CastGalleryItem = ({ element: { profile_path, name, character } }) => {
 
 CastGalleryItem.propTypes = {
   element: PropTypes.shape({
-    profile_path: PropTypes.string.isRequired,
+    profile_path: PropTypes.string,
     name: PropTypes.string.isRequired,
     character: PropTypes.string.isRequired,
   }).isRequired,

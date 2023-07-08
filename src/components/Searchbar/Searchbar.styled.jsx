@@ -1,24 +1,5 @@
 import styled from 'styled-components';
 
-// const Header = styled.header`
-//   position: sticky;
-//   top: -1px;
-//   z-index: 1100;
-
-//   padding: 16px 0;
-//   background-color: #3f51b5;
-//   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
-//     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
-// `;
-
-// const Container = styled.div`
-//   max-width: 1440px;
-//   padding-right: 16px;
-//   padding-left: 16px;
-//   margin-left: auto;
-//   margin-right: auto;
-// `;
-
 const Form = styled.form`
   display: flex;
   align-items: center;
@@ -26,13 +7,37 @@ const Form = styled.form`
   max-width: 600px;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 20px;
   padding: 25px auto;
-  height: 50px;
+  /* height: 50px; */
 
-  border-radius: 4px;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 25px;
   overflow: hidden;
 
   background-color: #fafafa;
+`;
+
+const Input = styled.input`
+  flex-grow: 1;
+  padding: 0;
+  padding-left: 16px;
+
+  border: none;
+  outline: none;
+  height: 30px;
+
+  background-color: #fafafa;
+
+  font: inherit;
+  font-size: 20px;
+  letter-spacing: 0.02em;
+
+  &::placeholder {
+    font: inherit;
+    font-size: 18px;
+  }
 `;
 
 const SearchBtn = styled.button`
@@ -52,36 +57,18 @@ const SearchBtn = styled.button`
   background-color: transparent;
 
   opacity: 0.6;
-  transition: opacity var(--animation-duration) var(--timing-function);
+  transition: all var(--animation-duration) var(--timing-function);
 
   &:hover {
     opacity: 1;
+    transform: scale(1.05);
+    color: #0967c2;
   }
 `;
 
 const SearchIconWrap = styled.span`
   display: flex;
   justify-content: center;
-`;
-
-const Input = styled.input`
-  flex-grow: 1;
-  padding: 0;
-  padding-left: 8px;
-
-  border: none;
-  outline: none;
-  height: 30px;
-
-  background-color: #fafafa;
-
-  font: inherit;
-  font-size: 20px;
-
-  &::placeholder {
-    font: inherit;
-    font-size: 18px;
-  }
 `;
 
 export { Form, SearchBtn, SearchIconWrap, Input };

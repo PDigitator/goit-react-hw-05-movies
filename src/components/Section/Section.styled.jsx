@@ -13,16 +13,12 @@ const Container = styled.div`
 `;
 
 const Title = styled.h1`
-  /* position: absolute;
-  white-space: nowrap;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  border: 0;
-  padding: 0;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  margin: -1px; */
+  margin-bottom: 20px;
+  color: #112236;
+  text-shadow: 2px 4px 4px rgb(44 101 158);
+  font-size: 32px;
+  line-height: calc(36 / 32);
+  letter-spacing: 0.02em;
 `;
 
 export { SectionWrapper, Container, Title };

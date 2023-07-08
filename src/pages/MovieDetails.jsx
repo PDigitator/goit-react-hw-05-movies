@@ -60,7 +60,7 @@ const MovieDetails = () => {
         {details.length !== 0 && <MovieInfo details={details} />}
 
         <div>
-          <h4>Additional information</h4>
+          <h3>Additional information</h3>
           <ul>
             <li>
               <NavLink to="cast">Cast</NavLink>

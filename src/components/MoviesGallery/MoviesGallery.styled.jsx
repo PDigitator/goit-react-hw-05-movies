@@ -2,10 +2,11 @@ import styled from 'styled-components';
 
 const List = styled.ul`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(278px, 1fr));
-  grid-gap: 16px;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 39px;
 
-  margin-bottom: 20px;
+  margin-bottom: 32px;
   padding: 0;
 `;
 

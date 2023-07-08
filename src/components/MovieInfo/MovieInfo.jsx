@@ -10,8 +10,6 @@ import noImageIcon from '../../icons/noImageIcon-500x750.png';
 const MovieInfo = ({
   details: { title, overview, poster_path, release_date, genres, vote_average },
 }) => {
-  console.log('start MovieInfo');
-
   const date = new Date(release_date).getFullYear();
   const score = Math.round(vote_average * 10);
   const movieGenres = genres.map(genre => genre.name).join(' ');
@@ -46,16 +44,15 @@ MovieInfo.propTypes = {
   details: PropTypes.shape({
     title: PropTypes.string.isRequired,
     overview: PropTypes.string.isRequired,
-    poster_path: PropTypes.string.isRequired,
+    poster_path: PropTypes.string,
     release_date: PropTypes.string.isRequired,
     genres: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
       }).isRequired
     ).isRequired,
-    vote_average: PropTypes.string.isRequired,
+    vote_average: PropTypes.number.isRequired,
   }).isRequired,
-  onClickImage: PropTypes.func.isRequired,
 };
 
 export default MovieInfo;

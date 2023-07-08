@@ -49,16 +49,13 @@ const Reviews = () => {
     fetchMovieReviewsData();
   }, [movieId]);
 
-  console.log('movieReviews', movieReviews);
   return (
     <>
-      <Section>
-        {movieReviews.length !== 0 ? (
-          <ReviewsGallery data={movieReviews} />
-        ) : (
-          <p>No reviews. But you can keep yours...</p>
-        )}
-      </Section>
+      {movieReviews.length !== 0 ? (
+        <ReviewsGallery data={movieReviews} />
+      ) : (
+        <p>No reviews. But you can keep yours...</p>
+      )}
 
       {isLoading && <Loader />}
     </>

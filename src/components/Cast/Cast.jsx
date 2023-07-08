@@ -49,12 +49,9 @@ const Cast = () => {
     fetchMovieCastData();
   }, [movieId]);
 
-  console.log('movieCast', movieCast);
   return (
     <>
-      <Section>
-        {movieCast.length !== 0 && <CastGallery data={movieCast} />}
-      </Section>
+      {movieCast.length !== 0 && <CastGallery data={movieCast} />}
 
       {isLoading && <Loader />}
     </>
