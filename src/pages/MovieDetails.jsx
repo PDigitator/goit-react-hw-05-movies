@@ -63,17 +63,6 @@ const MovieDetails = () => {
         {details.length !== 0 && <MovieInfo details={details} />}
 
         <AdditionalInfo />
-        {/* <div>
-          <h3>Additional information</h3>
-          <ul>
-            <li>
-              <NavLink to="cast">Cast</NavLink>
-            </li>
-            <li>
-              <NavLink to="reviews">Reviews</NavLink>
-            </li>
-          </ul>
-        </div> */}
       </Section>
       <Section>
         <Suspense fallback={<Text>Loading...</Text>}>
